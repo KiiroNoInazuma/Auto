@@ -1,10 +1,10 @@
-public class Auto {
+public class Car {
     String brand, model, color, country;
     double engineVolume;
     int year;
 
 
-    Auto(String brand, String model, int year, String country, String color, double engineVolume) {
+    Car(String brand, String model, int year, String country, String color, double engineVolume) {
 
         String def = "default";
         if (brand == null || brand.isBlank()) brand = def;
