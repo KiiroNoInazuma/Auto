@@ -1,8 +1,5 @@
 import transport.Car;
 
-import java.time.LocalDate;
-
-
 public class Launcher {
     public static void main(String[] args) {
 
