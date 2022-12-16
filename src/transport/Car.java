@@ -132,7 +132,7 @@ public class Car {
 
     public String getRegNumber() {
         if (!checkRegNum(regNumber))
-            return "<<Ошибка в регистрационном номере>>";
+            return regNumber+" <<Ошибка в регистрационном номере>>";
         return regNumber;
     }
 
