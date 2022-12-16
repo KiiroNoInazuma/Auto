@@ -1,5 +1,8 @@
 import transport.Car;
 
+import java.time.LocalDate;
+
+
 
 public class Launcher {
     public static void main(String[] args) {
@@ -9,7 +12,10 @@ public class Launcher {
         Car bmw = new Car("BMW", "Z8", 3, "автоматическая", 2021, "Германия", "черный", "купе", 2, "о456нр777");
         Car kia = new Car("Kia", "Sportage 4-го поколения", 2.4, "электромеханическая", 2018, "Южная Корея", "красный", "купе", 2, "о456нр777");
         Car hyundai = new Car("Hyundai", "Avante", 1.6, "электромеханическая", 2016, "Южной Корея", "оранжевый", "хэтчбэк", 5, "о456нр777");
-        Car.showInfo(audi);
+
+        bmw.setTire(LocalDate.now().getMonth().getValue());
+        bmw.setRegNumber("о555Тс777");
+        Car.showInfo(bmw);
 
 
     }

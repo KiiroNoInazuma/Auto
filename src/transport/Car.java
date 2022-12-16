@@ -1,5 +1,7 @@
 package transport;
 
+import java.time.LocalDate;
+
 public class Car {
     private String color, transmission, regNumber;
     private final String brand, model, country, bodyType;
@@ -35,6 +37,9 @@ public class Car {
         if (numSeats <= 0) numSeats = 5;
         this.numSeats = numSeats;
 
+        if (LocalDate.now().getMonth().getValue() < 3 && LocalDate.now().getMonth().getValue() > 11) {
+            tire = true;
+        }
     }
 
 
@@ -47,11 +52,15 @@ public class Car {
     public void setTire(int mount) {
         if (mount < 1 || mount > 12) {
             System.out.println("Введите правильное число месяцев!");
-        } else if (mount > 3 && mount < 12) {
+        } else if (mount > 3 && mount < 11) {
             tire = true;
         }
     }
 
+    public void setTire(String season) {
+        if (season.equals("летнии"))
+            tire = true;
+    }
 
     private boolean checkRegNum(String regNumber) {
         boolean bool = true;
@@ -73,10 +82,6 @@ public class Car {
         return bool;
     }
 
-    public void setTire(String mount) {
-        if (mount.equals("летнии"))
-            tire = true;
-    }
 
     public String getBrand() {
         return brand;
