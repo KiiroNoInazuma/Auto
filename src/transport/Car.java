@@ -43,6 +43,28 @@ public class Car {
     }
 
 
+     public class Key {
+        private final boolean remoteEngStart;
+        private final boolean keyEntry;
+
+        public Key(String remoteEngStart, String keyEntry) {
+            if (remoteEngStart == null || remoteEngStart.isBlank()) remoteEngStart = "нет";
+            if (remoteEngStart.equals("да")) {
+                this.remoteEngStart = true;
+            } else {
+                this.remoteEngStart = false;
+            }
+
+            if (keyEntry == null || keyEntry.isBlank()) keyEntry = "нет";
+            if (keyEntry.equals("да")) {
+                this.keyEntry = true;
+            } else {
+                this.keyEntry = false;
+            }
+        }
+    }
+
+
     private String getTire(boolean tire) {
         if (tire)
             return "летнии";
@@ -157,6 +179,7 @@ public class Car {
         return "Марка: " + brand + "\nМодель: " + model + "\nОбъем двигателя: " + engineVolume + " л." +
                 "\nТрансмиссия: " + transmission + "\nГод производства: " + year + "\nСтрана сборки: " +
                 country + "\nЦвет: " + color + "\nТип кузова: " + bodyType + "\nКоличество мест: " + numSeats +
-                "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber();
+                "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber()+
+                "\nУдаленный запуск двигателя: "+new Key("да","нет")+"\nБесключевой доступ: ";
     }
 }
