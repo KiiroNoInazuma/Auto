@@ -131,16 +131,21 @@ public class Car {
     }
 
     public String getRegNumber() {
-        if (!checkRegNum(regNumber))
-            return regNumber+" <<Ошибка в регистрационном номере>>";
+        if (!checkRegNum(regNumber) && !regNumber.startsWith("х000хх000"))
+            return regNumber + " <<ошибка в регистрационном номере>>";
         return regNumber;
     }
 
     public void setRegNumber(String regNumber) {
-        if (regNumber == null || regNumber.isBlank()) regNumber = "<<номер неизвестен>>";
-        this.regNumber = regNumber;
+        if (regNumber == null || regNumber.isBlank()) regNumber = "х000хх000 <<номер неизвестен>>";
+        this.regNumber = regNumber.toLowerCase();
     }
 
+    public static void showInfo(Car... car) {
+        for (Car show : car)
+            System.out.println(show + "\n==================" +
+                    "============================");
+    }
 
     @Override
     public String toString() {
