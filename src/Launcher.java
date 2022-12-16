@@ -10,6 +10,8 @@ public class Launcher {
         Car hyundai = new Car("Hyundai", "Avante", 1.6, "электромеханическая", 2016, "Южной Корея", "оранжевый", "хэтчбэк", 5, "о456нр777");
         bmw.setRegNumber("о555Тс777");
         Car.showInfo(bmw);
+        Car.Key key = bmw.new Key("да", "нет");
+        System.out.println(key.isKeyEntry());
 
     }
 }

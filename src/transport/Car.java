@@ -43,7 +43,7 @@ public class Car {
     }
 
 
-    public static class Key {
+    public class Key {
         private final boolean remoteEngStart;
         private final boolean keyEntry;
 
@@ -63,15 +63,16 @@ public class Car {
             }
         }
 
-        boolean isRemoteEngStart() {
+        public boolean isRemoteEngStart() {
             return remoteEngStart;
         }
 
-        boolean isKeyEntry() {
+        public boolean isKeyEntry() {
             return keyEntry;
         }
 
     }
+
 
     private String getTire(boolean tire) {
         if (tire)
