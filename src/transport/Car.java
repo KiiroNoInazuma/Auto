@@ -43,7 +43,7 @@ public class Car {
     }
 
 
-     public class Key {
+    public static class Key {
         private final boolean remoteEngStart;
         private final boolean keyEntry;
 
@@ -62,8 +62,16 @@ public class Car {
                 this.keyEntry = false;
             }
         }
-    }
 
+        boolean isRemoteEngStart() {
+            return remoteEngStart;
+        }
+
+        boolean isKeyEntry() {
+            return keyEntry;
+        }
+
+    }
 
     private String getTire(boolean tire) {
         if (tire)
@@ -179,7 +187,7 @@ public class Car {
         return "Марка: " + brand + "\nМодель: " + model + "\nОбъем двигателя: " + engineVolume + " л." +
                 "\nТрансмиссия: " + transmission + "\nГод производства: " + year + "\nСтрана сборки: " +
                 country + "\nЦвет: " + color + "\nТип кузова: " + bodyType + "\nКоличество мест: " + numSeats +
-                "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber()+
-                "\nУдаленный запуск двигателя: "+new Key("да","нет")+"\nБесключевой доступ: ";
+                "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber();
+                //"\nУдаленный запуск двигателя: " + "\nБесключевой доступ: ";
     }
 }
