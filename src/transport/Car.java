@@ -131,7 +131,7 @@ public class Car {
             result = checkDateIns / 365;
             mounts = result * 12;
             days = (checkDateIns <= 3||mounts==0) ? checkDateIns : (mounts - (int) mounts) * 31;
-            /*years = (int) result;*/
+            years = (int) result;
             if (checkDateIns <= 0) {
                 return "действие страхового полиса окончено";
             } else {
