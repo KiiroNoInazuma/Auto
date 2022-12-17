@@ -1,5 +1,8 @@
 import transport.Car;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Launcher {
     public static void main(String[] args) {
 
@@ -11,14 +14,12 @@ public class Launcher {
         Car.Key key = bmw.new Key("да", "нет");
         Car.Insurance ins = bmw.new Insurance("20.12.2023", 1000.00, 931212123);
         Car.Key keyAudi = bmw.new Key("нет", "да");
-        Car.Insurance insAudi = bmw.new Insurance("31.12.2022", 10000.00, 222222123);
+        Car.Insurance insAudi = bmw.new Insurance("31.12.2024", 10000.00, 222222123);
         bmw.setRegNumber("о555Тс777");
         bmw.setUpKey(key);
         bmw.setInsurance(ins);
         audi.setUpKey(keyAudi);
         audi.setInsurance(insAudi);
         Car.showInfo(bmw, audi);
-
-
     }
 }
