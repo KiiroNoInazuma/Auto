@@ -52,12 +52,7 @@ public class Car {
 
         public Key(String remoteEngStart, String keyEntry) {
             if (remoteEngStart == null || remoteEngStart.isBlank()) remoteEngStart = "нет";
-            if (remoteEngStart.equals("да")) {
-                this.remoteEngStart = true;
-            } else {
-                this.remoteEngStart = false;
-            }
-
+            this.remoteEngStart = remoteEngStart.equals("да");
             if (keyEntry == null || keyEntry.isBlank()) keyEntry = "нет";
             if (keyEntry.equals("да")) {
                 this.keyEntry = true;
@@ -130,7 +125,7 @@ public class Car {
             int checkDateIns = LocalDate.parse(validity, DateTimeFormatter.ofPattern("dd.MM.yyyy")).getDayOfYear() - LocalDate.now().getDayOfYear();
             result = checkDateIns / 365;
             mounts = result * 12;
-            days = (checkDateIns <= 3||mounts==0) ? checkDateIns : (mounts - (int) mounts) * 31;
+            days = (checkDateIns <= 3 || mounts == 0) ? checkDateIns : (mounts - (int) mounts) * 31;
             years = (int) result;
             if (checkDateIns <= 0) {
                 return "действие страхового полиса окончено";
@@ -140,11 +135,7 @@ public class Car {
         }
 
         boolean checkNumLenIns() {
-            if (String.valueOf(insId).length() == 9) {
-                return true;
-            } else {
-                return false;
-            }
+            return String.valueOf(insId).length() == 9;
         }
 
         @Override
@@ -277,20 +268,6 @@ public class Car {
             }
             System.out.println("==============================================");
         }
-    }
-
-    private String showInfoDop() {
-        if (key == null) {
-            System.out.println("Не определены параметры доп.опций!");
-        } else {
-            System.out.println(key);
-        }
-        if (insurance == null) {
-            System.out.println("Страховка не оформлена!");
-        } else {
-            System.out.println(insurance);
-        }
-        return "";
     }
 
     @Override
