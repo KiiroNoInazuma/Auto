@@ -10,11 +10,15 @@ public class Launcher {
         Car hyundai = new Car("Hyundai", "Avante", 1.6, "электромеханическая", 2016, "Южной Корея", "оранжевый", "хэтчбэк", 5, "о456нр777");
         Car.Key key = bmw.new Key("да", "нет");
         Car.Insurance ins = bmw.new Insurance("20.12.2023", 1000.00, 931212123);
+        Car.Key keyAudi = bmw.new Key("нет", "да");
+        Car.Insurance insAudi = bmw.new Insurance("31.12.2022", 10000.00, 222222123);
         bmw.setRegNumber("о555Тс777");
         bmw.setUpKey(key);
         bmw.setInsurance(ins);
-        Car.showInfo(bmw);
-        Car.showInfo(audi);
+        audi.setUpKey(keyAudi);
+        audi.setInsurance(insAudi);
+        Car.showInfo(bmw, audi);
+
 
     }
 }

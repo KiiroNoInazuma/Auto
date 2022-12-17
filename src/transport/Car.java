@@ -10,8 +10,8 @@ public class Car {
     private double engineVolume;
 
     private boolean tire;
-    private static Key key;
-    private static Insurance insurance;
+    private Key key;
+    private Insurance insurance;
 
 
     public Car(String brand, String model, double engineVolume, String transmission, int year,
@@ -130,7 +130,7 @@ public class Car {
             int checkDateIns = LocalDate.parse(validity, DateTimeFormatter.ofPattern("dd.MM.yyyy")).getDayOfYear() - LocalDate.now().getDayOfYear();
             result = checkDateIns / 365;
             mounts = result * 12;
-            days = (checkDateIns <= 3) ? checkDateIns : (mounts - (int) mounts) * 31;
+            days = (checkDateIns <= 3||mounts==0) ? checkDateIns : (mounts - (int) mounts) * 31;
             years = (int) result;
             if (checkDateIns <= 0) {
                 return "действие страхового полиса окончено";
@@ -265,6 +265,16 @@ public class Car {
     public static void showInfo(Car... car) {
         for (Car show : car) {
             System.out.println(show);
+            if (show.key == null) {
+                System.out.println("Не определены параметры доп.опций!");
+            } else {
+                System.out.println(show.key);
+            }
+            if (show.insurance == null) {
+                System.out.println("Страховка не оформлена!");
+            } else {
+                System.out.println(show.insurance);
+            }
             System.out.println("==============================================");
         }
     }
