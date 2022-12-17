@@ -13,7 +13,8 @@ public class Launcher {
         bmw.setRegNumber("о555Тс777");
         bmw.setUpKey(key);
         bmw.setInsurance(ins);
-        bmw.showInfo(bmw,kia);
+        Car.showInfo(bmw);
+        Car.showInfo(audi);
 
     }
 }

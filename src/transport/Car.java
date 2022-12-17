@@ -265,19 +265,22 @@ public class Car {
     public static void showInfo(Car... car) {
         for (Car show : car) {
             System.out.println(show);
-            if (key == null) {
-                System.out.println("Не определены параметры доп.опций!");
-            } else {
-                System.out.println(key);
-            }
-            if (insurance == null) {
-                System.out.println("Страховка не оформлена!");
-            } else {
-                System.out.println(insurance);
-            }
-
             System.out.println("==============================================");
         }
+    }
+
+    private String showInfoDop() {
+        if (key == null) {
+            System.out.println("Не определены параметры доп.опций!");
+        } else {
+            System.out.println(key);
+        }
+        if (insurance == null) {
+            System.out.println("Страховка не оформлена!");
+        } else {
+            System.out.println(insurance);
+        }
+        return "";
     }
 
     @Override
