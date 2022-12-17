@@ -1,6 +1,7 @@
 package transport;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Car {
     private String color, transmission, regNumber;
@@ -9,6 +10,8 @@ public class Car {
     private double engineVolume;
 
     private boolean tire;
+    private static Key key;
+    private static Insurance insurance;
 
 
     public Car(String brand, String model, double engineVolume, String transmission, int year,
@@ -63,14 +66,95 @@ public class Car {
             }
         }
 
-        public boolean isRemoteEngStart() {
+        private boolean isRemoteEngStart() {
             return remoteEngStart;
         }
 
-        public boolean isKeyEntry() {
+        private boolean isKeyEntry() {
             return keyEntry;
         }
 
+
+        private String engStart() {
+            if (isRemoteEngStart()) {
+                return "да";
+            } else {
+                return "нет";
+            }
+        }
+
+        private String keyEnt() {
+            if (isKeyEntry()) {
+                return "да";
+            } else {
+
+                return "нет";
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "Удаленный запуск двигателя: " + engStart() + "\nБесключевой доступ: " + keyEnt();
+        }
+    }
+
+
+    public void setUpKey(Key key) {
+        this.key = key;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
+
+    public class Insurance {
+        private final String validity;
+        private final double insCost;
+        private final int insId;
+
+        public Insurance(String validity, double insCost, int insId) {
+            if (validity == null || validity.isBlank()) validity = "Страховка не оформлена";
+            this.validity = validity;
+            if (insCost <= 0) insCost = 1000;
+            this.insCost = insCost;
+            if (insId <= 0) insId = 111111111;
+            this.insId = insId;
+        }
+
+
+        private String checkIns() {
+            double days;
+            double mounts;
+            int years;
+            double result;
+            int checkDateIns = LocalDate.parse(validity, DateTimeFormatter.ofPattern("dd.MM.yyyy")).getDayOfYear() - LocalDate.now().getDayOfYear();
+            result = checkDateIns / 365;
+            mounts = result * 12;
+            days = (checkDateIns <= 3) ? checkDateIns : (mounts - (int) mounts) * 31;
+            years = (int) result;
+            if (checkDateIns <= 0) {
+                return "действие страхового полиса окончено";
+            } else {
+                return (int) days + "д." + (int) mounts + "м." + years + "г.";
+            }
+        }
+
+        boolean checkNumLenIns() {
+            if (String.valueOf(insId).length() == 9) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public String toString() {
+            if (checkNumLenIns()) {
+                return "До конца страховки осталось: " + checkIns();
+            } else {
+                return "Введен неверный номер страхового полиса!";
+            }
+        }
     }
 
 
@@ -177,10 +261,23 @@ public class Car {
         this.regNumber = regNumber.toLowerCase();
     }
 
+
     public static void showInfo(Car... car) {
-        for (Car show : car)
-            System.out.println(show + "\n==================" +
-                    "============================");
+        for (Car show : car) {
+            System.out.println(show);
+            if (key == null) {
+                System.out.println("Не определены параметры доп.опций!");
+            } else {
+                System.out.println(key);
+            }
+            if (insurance == null) {
+                System.out.println("Страховка не оформлена!");
+            } else {
+                System.out.println(insurance);
+            }
+
+            System.out.println("==============================================");
+        }
     }
 
     @Override
@@ -189,6 +286,6 @@ public class Car {
                 "\nТрансмиссия: " + transmission + "\nГод производства: " + year + "\nСтрана сборки: " +
                 country + "\nЦвет: " + color + "\nТип кузова: " + bodyType + "\nКоличество мест: " + numSeats +
                 "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber();
-                //"\nУдаленный запуск двигателя: " + "\nБесключевой доступ: ";
+
     }
 }
