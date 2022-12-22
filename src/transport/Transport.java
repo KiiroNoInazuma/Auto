@@ -5,7 +5,7 @@ public abstract class Transport {
     private final String brand, model, country;
     private final int year;
     private String color;
-    private double maxSpeed;
+    protected double maxSpeed;
 
     public Transport(String brand, String model, int year, String country, String color, double maxSpeed) {
         String def = "default";
@@ -21,15 +21,27 @@ public abstract class Transport {
         setMaxSpeed(maxSpeed);
     }
 
-    public abstract String getBrand();
+    public String getBrand() {
+        return brand;
+    }
 
-    public abstract String getModel();
+    public String getModel() {
+        return model;
+    }
 
-    public abstract int getYear();
+    public int getYear() {
+        return year;
+    }
 
-    public abstract String getCountry();
+    ;
 
-    public abstract String getColor();
+    public String getCountry() {
+        return country;
+    }
+
+    public String getColor() {
+        return color;
+    }
 
     public void setColor(String color) {
         if (color == null || color.isBlank()) color = "белый";

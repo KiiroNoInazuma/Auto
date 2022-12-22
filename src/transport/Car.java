@@ -3,10 +3,10 @@ package transport;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Car {
+public class Car extends Transport {
     private String color, transmission, regNumber;
-    private final String brand, model, country, bodyType;
-    private final int year, numSeats;
+    private final String bodyType;
+    private final int numSeats;
     private double engineVolume;
 
     private boolean tire;
@@ -15,18 +15,10 @@ public class Car {
 
 
     public Car(String brand, String model, double engineVolume, String transmission, int year,
-               String country, String color, String bodyType, int numSeats, String regNumber) {
-
+               String country, String color, String bodyType, int numSeats, String regNumber, double maxSpeed) {
+        super(brand, model, year, country, color, maxSpeed);
 
         String def = "default";
-        if (brand == null || brand.isBlank()) brand = def;
-        this.brand = brand;
-        if (model == null || model.isBlank()) model = def;
-        this.model = model;
-        if (country == null || country.isBlank()) country = def;
-        this.country = country;
-        if (color == null || color.isBlank()) color = "белый";
-        this.color = color;
         if (transmission == null || transmission.isBlank()) transmission = "механическая";
         this.transmission = transmission;
         if (bodyType == null || bodyType.isBlank()) bodyType = def;
@@ -35,8 +27,6 @@ public class Car {
         this.bodyType = bodyType;
         if (engineVolume <= 0) engineVolume = 1.5;
         this.engineVolume = engineVolume;
-        if (year <= 0) year = 2000;
-        this.year = year;
         if (numSeats <= 0) numSeats = 5;
         this.numSeats = numSeats;
 
@@ -46,7 +36,7 @@ public class Car {
     }
 
 
-    public class Key {
+    public static class Key {
         private final boolean remoteEngStart;
         private final boolean keyEntry;
 
@@ -102,7 +92,7 @@ public class Car {
         this.insurance = insurance;
     }
 
-    public class Insurance {
+    public static class Insurance {
         private final String validity;
         private final double insCost;
         private final int insId;
@@ -188,29 +178,12 @@ public class Car {
         return bool;
     }
 
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
     public String getBodyType() {
         return bodyType;
     }
 
     public int getNumSeats() {
         return numSeats;
-    }
-
-    public int getYear() {
-        return year;
     }
 
     public String getColor() {
@@ -220,6 +193,11 @@ public class Car {
     public void setColor(String color) {
         if (color == null || color.isBlank()) color = "белого";
         this.color = color;
+    }
+
+    @Override
+    public double getMaxSpeed() {
+        return maxSpeed;
     }
 
     public String getTransmission() {
@@ -272,10 +250,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Марка: " + brand + "\nМодель: " + model + "\nОбъем двигателя: " + engineVolume + " л." +
-                "\nТрансмиссия: " + transmission + "\nГод производства: " + year + "\nСтрана сборки: " +
-                country + "\nЦвет: " + color + "\nТип кузова: " + bodyType + "\nКоличество мест: " + numSeats +
-                "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber();
+        return "Марка: " + getBrand() + "\nМодель: " + getModel() + "\nОбъем двигателя: " + engineVolume + " л." +
+                "\nТрансмиссия: " + transmission + "\nГод производства: " + getYear() + "\nСтрана сборки: " +
+                getCountry() + "\nЦвет: " + color + "\nТип кузова: " + bodyType + "\nКоличество мест: " + numSeats +
+                "\nУстановлены шины: " + getTire(tire) + "\nРегистрационный номер: " + getRegNumber() + "\nМаксимальная скорость: " + getMaxSpeed() + " км/ч";
 
     }
 }
