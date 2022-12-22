@@ -33,8 +33,6 @@ public abstract class Transport {
         return year;
     }
 
-    ;
-
     public String getCountry() {
         return country;
     }
